@@ -1,8 +1,8 @@
 (function(){
-  var app = angular.module( "APIBeardDemo", ['ng'] );
+  var app = angular.module( "APIBeardDemo");
   app.service(
     "APIBeardService",
-    ['$http', function APIBeardFunction($http) {
+    ['$http', '$location', 'config', function APIBeardFunction($http, $location, config) {
       var that = this;
 
       this.beards = [];
@@ -16,14 +16,16 @@
         return this.beards;
       };
 
+      var hostname = $location.host();
+
       this.fetchBeards = function(){
-        $http.get("http://localhost:8000/loadedBeards").then( function(data) {
+        $http.get("http://"+hostname+":"+config.skybeard_port+"/loadedBeards").then( function(data) {
           that.setBeards(data.data);
         });
       };
 
       this.fetchAvailableCommands = function() {
-        $http.get("http://localhost:8000/availableCommands").then(
+        $http.get("http://"+hostname+":"+config.skybeard_port+"/availableCommands").then(
           function(data) {
             that.availableCommands = data.data;
           });
@@ -33,22 +35,23 @@
 
   app.controller(
     'PanelController',
-    ["APIBeardService", function(APIBeardService) {
-      this.tab = 1;
+    ['$scope', '$window', 'APIBeardService', 
+     function($scope, $window, APIBeardService) {
+       this.tab = 1;
 
-      APIBeardService.fetchBeards();
-      this.selectTab = function(setTab) {
-        this.tab = setTab;
-        // TODO make it not hard coded
-        if(this.tab === 1) {
-          APIBeardService.fetchBeards();
-        };
-      };
+       APIBeardService.fetchBeards();
+       this.selectTab = function(setTab) {
+         this.tab = setTab;
+         // TODO make it not hard coded
+         if(this.tab === 1) {
+           APIBeardService.fetchBeards();
+         };
+       };
 
-      this.isSelected = function(checkTab) {
-        return this.tab === checkTab;
-      };
-    }]);
+       this.isSelected = function(checkTab) {
+         return this.tab === checkTab;
+       };
+     }]);
 
   app.controller(
     'loadedBeardsController',
