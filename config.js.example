@@ -1,0 +1,6 @@
+(function(){
+  var app = angular.module( "APIBeardDemo", ['ng'] );
+  app.constant('config', {
+    skybeard_port: 8000
+  });
+})();                           // End of closure

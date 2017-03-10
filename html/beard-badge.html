@@ -1,5 +1,10 @@
-<pre>
-{{beard.name}}
-{{beard.userhelp}}
-{{beard.commands}}
-</pre>
+<div class="panel panel-default">
+    <div class="panel-heading">{{beard.name}}</div>
+    <div class="panel-body">
+        {{beard.userhelp}}
+        <h4>Commands:</h4>
+        <ul ng-repeat="command in beard.commands">
+            <li>{{command.command}} - {{command.help}}</li>
+        </ul>
+    </div>
+</div>
