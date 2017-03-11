@@ -3,8 +3,11 @@
     <div class="panel-body">
         <div ng-bind-html="beard.userhelp"></div>
         <h4>Commands:</h4>
-        <ul ng-repeat="command in beard.commands">
-            <li>{{command.command}} - {{command.help}}</li>
+        <ul>
+            <div ng-repeat="command in beard.commands">
+                <li ng-if="command.command">{{command.command}} - {{command.help}}</li>
+                <li ng-if="command.predicate"><code>{{command.predicate}}</code> - {{command.help}}</li>
+            </div>
         </ul>
     </div>
 </div>
