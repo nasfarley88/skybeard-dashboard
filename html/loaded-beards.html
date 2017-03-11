@@ -1,25 +1,24 @@
-<section ng-controller="loadedBeardsController as lbCtrl">
-    <div ng-show="lbCtrl.APIBeardService.getBeards().length > 0">
-        <div ng-repeat="beard in lbCtrl.APIBeardService.getBeards()">
-            <beard-badge beard="beard"></beard-badge>
+<div ng-show="beards.length > 0">
+    <div class="row">
+        <div class="col-md-4">.
+            <div ng-repeat="beard in columnatedBeards[0]">
+                <beard-badge beard="beard"></beard-badge>
+            </div>
         </div>
-        <!-- <ul ng-repeat="beard in lbCtrl.APIBeardService.getBeards()">
-             <li>{{(beard)}}</li>
-             </ul> -->
-        <!-- <h3>Available commands</h3>
-             <button type="button"
-             class="btn btn-default"
-             ng-click="lbCtrl.APIBeardService.fetchAvailableCommands()">
-             Click me to get available commands.
-             </button>
-             <ul ng-repeat="(beard, commands) in lbCtrl.APIBeardService.availableCommands">
-             <li>{{ beard }}</li>
-             <ul ng-repeat="command in commands">
-             <li> /{{command.command}} - {{command.hint}}</li>
-             </ul>
-             </ul> -->
+        <div class="col-md-4">.
+            <div ng-repeat="beard in columnatedBeards[1]">
+                <beard-badge beard="beard"></beard-badge>
+            </div>
+        </div>
+        <div class="col-md-4">.
+            <div ng-repeat="beard in columnatedBeards[2]">
+                <beard-badge beard="beard"></beard-badge>
+            </div>
+        </div>
+    </div>
+</div>
+<center
     <button type="button"
             class="btn btn-default"
-            ng-click="lbCtrl.APIBeardService.loadBeards()">Click me to update beard info!</button>
-    </div>
-</section>
+            ng-click="ctrl.loadBeards()">Click me to update beard info!</button>
+</center>
