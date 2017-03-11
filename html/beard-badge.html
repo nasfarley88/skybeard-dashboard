@@ -1,7 +1,7 @@
 <div class="panel panel-default">
     <div class="panel-heading">{{beard.name}}</div>
     <div class="panel-body">
-        {{beard.userhelp}}
+        <div ng-bind-html="beard.userhelp"></div>
         <h4>Commands:</h4>
         <ul ng-repeat="command in beard.commands">
             <li>{{command.command}} - {{command.help}}</li>

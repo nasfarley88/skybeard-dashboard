@@ -1,5 +1,5 @@
 (function(){
-  var app = angular.module( "APIBeardDemo", ['ng'] );
+  var app = angular.module( "APIBeardDemo", ['ng', 'ngSanitize'] );
   app.constant('config', {
     skybeard_host: "localhost",
     skybeard_port: 8000
