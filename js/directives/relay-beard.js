@@ -7,14 +7,22 @@
       restrict: "E",
       templateUrl: "html/relay-beard.html",
       controller: [
-        '$http', '$scope',
-        function($http, $scope) {
+        '$http', '$scope', 'config',
+        function($http, $scope, config) {
+          $scope.enabled = config.enable_relay_beard;
+
           $scope.config = {};
-          $scope.config.url = "";
+          $scope.config.url = "http://"
+            + config.skybeard_host + ":"
+            + config.skybeard_port;
 
           $scope.payload = {};
           $scope.payload.text = "";
-          $scope.payload.chat_id = 0;
+          if(config.default_chat_id) {
+            $scope.payload.chat_id = config.default_chat_id;
+          } else {
+            $scope.payload.chat_id = 0;
+          }
 
           $scope.post = function() {
             $http.post($scope.config.url, $scope.payload);

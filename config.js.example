@@ -2,6 +2,13 @@
   var app = angular.module( "APIBeardDemo", ['ng', 'ngSanitize'] );
   app.constant('config', {
     skybeard_host: "localhost",
-    skybeard_port: 8000
+    skybeard_port: 8000,
+    default_chat_id: null,
+
+    // Specific config
+    enable_relay_beard: true,
+
+    // dummy stuff
+    dummy: "This is just here to provide an end item for trailing commas"
   });
 })();                           // End of closure
